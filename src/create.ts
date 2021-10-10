@@ -6,19 +6,19 @@ import type {
 import type { InternalTypescriptTemplateMethods } from './types/methods';
 
 export function createTypescriptTemplateInstance<T>() {
-	const ttModulesObj = { ...typescriptTemplateModules };
-	const ttMethods = {} as InternalTypescriptTemplateMethods<T>;
-	for (const module of Object.values(ttModulesObj)) {
+	const typescriptTemplateModulesObj = { ...typescriptTemplateModules };
+	const typescriptTemplateMethods = {} as InternalTypescriptTemplateMethods<T>;
+	for (const module of Object.values(typescriptTemplateModulesObj)) {
 		for (const [fn, value] of Object.entries(module<T>())) {
-			ttMethods[fn as keyof InternalTypescriptTemplateMethods<T>] =
+			typescriptTemplateMethods[fn as keyof InternalTypescriptTemplateMethods<T>] =
 				value as any;
 		}
 	}
 
-	const ttInstance: InternalTypescriptTemplateInstance<T> = {
-		...ttMethods,
+	const typescriptTemplateInstance: InternalTypescriptTemplateInstance<T> = {
+		...typescriptTemplateMethods,
 		state: {} as T,
 	};
 
-	return ttInstance as TypescriptTemplateInstance<T>;
+	return typescriptTemplateInstance as TypescriptTemplateInstance<T>;
 }
