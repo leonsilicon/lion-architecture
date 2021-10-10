@@ -1,14 +1,14 @@
 import type { UnionToIntersection } from 'utility-types';
 
-import * as ttModules from '../modules';
+import * as typescriptTemplateModules from '../modules';
 
 class ModulesWrapper<T> {
 	// eslint-disable-next-line class-methods-use-this
 	wrapped() {
-		return ttModules['' as keyof typeof ttModules]<T>();
+		return typescriptTemplateModules['' as keyof typeof typescriptTemplateModules]<T>();
 	}
 }
 
-export type InternalTTMethods<T> = UnionToIntersection<
+export type InternalTypescriptTemplateMethods<T> = UnionToIntersection<
 	ReturnType<ModulesWrapper<T>['wrapped']>
 >;

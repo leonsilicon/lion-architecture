@@ -1,11 +1,11 @@
-import type { InternalTTInstance } from '../types/instance';
+import type { InternalTypescriptTemplateInstance } from '../types/instance';
 
 export function coreModule<T>() {
-	function publicMethod(this: InternalTTInstance<T>) {
+	function publicMethod(this: InternalTypescriptTemplateInstance<T>) {
 		return 1;
 	}
 
-	function _privateMethod(this: InternalTTInstance<T>) {
+	function _privateMethod(this: InternalTypescriptTemplateInstance<T>) {
 		return 'private';
 	}
 
