@@ -1,7 +1,7 @@
-import type { InternalTypescriptTemplateMethods } from './methods';
+import type { InternalTypescriptTemplateProperties } from './properties';
 
-export type InternalTypescriptTemplateInstance<T> = InternalTypescriptTemplateMethods<T> & {
-	state: T;
+export type InternalTypescriptTemplateInstance<T> = InternalTypescriptTemplateProperties<T> & {
+	globalState: T;
 };
 
 export type TypescriptTemplateInstance<T> = {

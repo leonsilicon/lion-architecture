@@ -9,6 +9,6 @@ class ModulesWrapper<T> {
 	}
 }
 
-export type InternalTypescriptTemplateMethods<T> = UnionToIntersection<
+export type InternalTypescriptTemplateProperties<T> = UnionToIntersection<
 	ReturnType<ModulesWrapper<T>['wrapped']>
 >;

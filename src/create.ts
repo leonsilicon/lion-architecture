@@ -1,24 +1,29 @@
+import rfdc from 'rfdc';
+
 import * as typescriptTemplateModules from './modules';
 import type {
 	InternalTypescriptTemplateInstance,
 	TypescriptTemplateInstance,
 } from './types/instance';
-import type { InternalTypescriptTemplateMethods } from './types/methods';
+import type { InternalTypescriptTemplateProperties } from './types/properties';
+
+const clone = rfdc();
+const typescriptTemplateModulesObj = { ...typescriptTemplateModules };
+const typescriptTemplateProperties =
+	{} as InternalTypescriptTemplateProperties<any>;
+for (const module of Object.values(typescriptTemplateModulesObj)) {
+	for (const [fn, value] of Object.entries(module<any>())) {
+		typescriptTemplateProperties[
+			fn as keyof InternalTypescriptTemplateProperties<any>
+		] = value;
+	}
+}
 
 export function createTypescriptTemplateInstance<T>() {
-	const typescriptTemplateModulesObj = { ...typescriptTemplateModules };
-	const typescriptTemplateMethods = {} as InternalTypescriptTemplateMethods<T>;
-	for (const module of Object.values(typescriptTemplateModulesObj)) {
-		for (const [fn, value] of Object.entries(module<T>())) {
-			typescriptTemplateMethods[fn as keyof InternalTypescriptTemplateMethods<T>] =
-				value as any;
-		}
-	}
-
-	const typescriptTemplateInstance: InternalTypescriptTemplateInstance<T> = {
-		...typescriptTemplateMethods,
-		state: {} as T,
-	};
+	const typescriptTemplateInstance: InternalTypescriptTemplateInstance<T> =
+		Object.assign(clone(typescriptTemplateProperties), {
+			globalState: {} as T,
+		});
 
 	return typescriptTemplateInstance as TypescriptTemplateInstance<T>;
 }
