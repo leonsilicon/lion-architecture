@@ -1,2 +1,2 @@
 export * from './create';
-export { TypescriptTemplateInstance } from './types/instance';
+export { TypescriptTemplateInstance } from './types/instance'.;

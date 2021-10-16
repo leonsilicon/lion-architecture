@@ -1,10 +1,8 @@
 import type { InternalTypescriptTemplateInstance } from '../types/instance';
 
 export function coreModule<T>() {
-	const coreState = {} as T;
-
 	function publicMethod(this: InternalTypescriptTemplateInstance<T>) {
-		return coreState;
+		return this._coreState;
 	}
 
 	function _privateMethod(this: InternalTypescriptTemplateInstance<T>) {
@@ -14,6 +12,5 @@ export function coreModule<T>() {
 	return {
 		publicMethod,
 		_privateMethod,
-		coreState,
 	};
 }
