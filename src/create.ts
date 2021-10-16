@@ -5,6 +5,7 @@ import type {
 	InternalTypescriptTemplateInstance,
 	InternalTypescriptTemplateState,
 	TypescriptTemplateInstance,
+	TypescriptTemplateInstanceOptions,
 } from './types/instance';
 import type { InternalTypescriptTemplateProperties } from './types/properties';
 
@@ -20,8 +21,11 @@ for (const module of Object.values(typescriptTemplateModulesObj)) {
 	}
 }
 
-export function createTypescriptTemplateInstance<T>() {
+export function createTypescriptTemplateInstance<T>(
+	options: TypescriptTemplateInstanceOptions
+) {
 	const internalState: InternalTypescriptTemplateState<T> = {
+		_options: options,
 		_coreState: {} as T,
 		globalState: {} as T,
 	};

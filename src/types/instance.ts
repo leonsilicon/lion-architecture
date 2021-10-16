@@ -1,8 +1,11 @@
 import type { InternalTypescriptTemplateProperties } from './properties';
 
+export type TypescriptTemplateInstanceOptions = unknown;
+
 export type InternalTypescriptTemplateState<T> = {
 	globalState: T;
 	_coreState: T;
+	_options: TypescriptTemplateInstanceOptions;
 };
 
 export type InternalTypescriptTemplateInstance<T> =
