@@ -10,9 +10,11 @@ export type InternalTypescriptTemplateState<T> = {
 	_options: TypescriptTemplateInstanceOptions;
 };
 
-export type InternalTypescriptTemplateInstance<T> =
+type InternalTypescriptTemplateKeys<T> =
 	InternalTypescriptTemplateProperties<T> & InternalTypescriptTemplateState<T>;
 
-export type TypescriptTemplateInstance<T> = RemovePrivateProperties<
-	InternalTypescriptTemplateInstance<T>
->;
+export interface InternalTypescriptTemplateInstance<T>
+	extends InternalTypescriptTemplateKeys<T> {}
+
+export interface TypescriptTemplateInstance<T>
+	extends RemovePrivateProperties<InternalTypescriptTemplateInstance<T>> {}

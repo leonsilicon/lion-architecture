@@ -35,3 +35,6 @@ export function createTypescriptTemplateInstance<T>(
 
 	return typescriptTemplateInstance as TypescriptTemplateInstance<T>;
 }
+
+const a = createTypescriptTemplateInstance({});
+a.publicMethod();
