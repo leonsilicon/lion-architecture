@@ -17,7 +17,7 @@ for (const module of Object.values(typescriptTemplateModulesObj)) {
 	for (const [fn, value] of Object.entries(module<any>())) {
 		typescriptTemplateProperties[
 			fn as keyof InternalTypescriptTemplateProperties<any>
-		] = value;
+		] = value as any;
 	}
 }
 
