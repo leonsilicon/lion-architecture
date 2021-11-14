@@ -53,7 +53,7 @@ module.exports = {
 		],
 		'import/no-extraneous-dependencies': [
 			'error',
-			{ devDependencies: true, packageDir: './' },
+			{ devDependencies: true },
 		],
 
 		// eslint-config-airbnb-base style overrides
