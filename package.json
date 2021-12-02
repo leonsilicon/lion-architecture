@@ -1,9 +1,12 @@
 {
 	"name": "lion-architecture",
-	"version": "1.0.0",
-	"main": "src/index.ts",
+	"version": "1.0.1",
+	"main": "dist/index.ts",
+	"types": "dist/index.d.ts",
 	"license": "MIT",
 	"scripts": {
+		"prepublish": "pnpm build",
+		"build": "tsc --outDir dist/",
 		"lint": "eslint --fix src",
 		"prettier": "prettier --write src"
 	},
