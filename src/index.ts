@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 import rfdc from 'rfdc';
 
-export function retrieveModuleProperties<P>(modules: Record<string, Function>) {
+export function retrieveModuleProperties(
+	modules: Record<string, Function>
+): Record<string, Function> {
 	const modulesObj = { ...modules };
-	const moduleProperties = {} as P;
+	const moduleProperties = {} as Record<string, Function>;
 	for (const module of Object.values(modulesObj)) {
 		for (const [fn, value] of Object.entries(module())) {
-			moduleProperties[fn as keyof P] = value as any;
+			moduleProperties[fn] = value as any;
 		}
 	}
 	return moduleProperties;
