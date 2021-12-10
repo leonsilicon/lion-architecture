@@ -1,6 +1,6 @@
 # Lion Architecture
 
-The Lion Architecture is a programming pattern for TypeScript projects. It emphasizes modularity, DRY code, and long-term flexibility. It does not prioritize performance and is willing to sacrifice on performance for greater ease-of-development. Many of the performance issues with this architecture can theoretically be fixed using a build-step that will compile TypeScript in Lion Architecture to more performantly-written TypeScript/JavaScript.
+The "Lion Architecture" (LA) is a programming pattern for TypeScript projects. It emphasizes modularity, DRY code, and long-term flexibility. It does not prioritize performance and is willing to sacrifice on performance for greater ease-of-development. Many of the performance issues with this architecture can theoretically be fixed using a build-step that will compile TypeScript in Lion Architecture to more performantly-written TypeScript/JavaScript.
 
 ## Object Factories over ES6 `class`es
 
@@ -16,3 +16,48 @@ One of the current problems with developing TypeScript libraries is the need to 
 ### Modules
 
 To take the most advantage of TypeScript type inference, the Lion Architecture introduces the idea of "file modules", where each module declares a set of functions that are later merged into the final object that is passed to the user. To leverage TypeScript's powerful type system, a wrapper function, the `defineMethods` function returned by the `useDefineMethods` higher-order function, is needed to successfully define methods on the instance. `defineMethods` allows you to access private functions within your module, while making sure that the external instance doesn't expose any private functions in the TypeScript typings.
+
+## File Structure
+A project following the Lion Architecture generally adopts the following file structure:
+```
+my-project/
+  - package.json
+  - src/
+    - index.ts # the exports of your package
+    - types/   # folder for all TypeScript types
+    - utils/   # folder for all utility code
+      - create.ts # file where the project instance is created 
+    - modules/ # folder for all your Lion Architecture modules
+      - module1/
+        - module-part.ts          # a LA module
+	- another-module-part.ts  # another LA module
+        - index.ts                # re-exports the module files
+      - module2/
+        - module-part.ts
+        - another-module-part.ts
+	- index.ts
+      - index.ts # re-exports all modules
+```
+
+The `create.ts` file would generally look something like this:
+```typescript
+import { createInstance, retrieveModuleProperties } from 'lion-architecture';
+
+import * as myProjectModules from '../modules';
+import type { InternalMyProjectState, MyProject } from '../types/my-project';
+import type { MyProjectProperties } from '../types/properties';
+
+const myProjectProperties = retrieveModuleProperties(
+  myProjectModules
+) as InternalMyProjectProperties<any>;
+) as InternalLionecsProperties<any>;
+
+export function createMyProject() {
+  const myProject = createInstance(myProjectProperties, {}) as MyProject;
+  return myProject;
+}
+```
+
+## Projects using Lion Architecture
+[lionecs](https://github.com/leonzalion/lionecs): The most strongly typed ECS library in TypeScript.
+[LionREST](https://github.com/leonzalion/lionrest): A type-safe REST API schema manager based off TypeScript with no code generation.
