@@ -1,20 +1,15 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "declaration": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": [
-      "esnext",
-    ],
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-	  "src/*.ts"
-  ]
+	"extends": "@leonzalion/tsconfig/tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"baseUrl": ".",
+		"paths": {
+			"~/*": [
+				"./src/*"
+			],
+		}
+	},
+	"include": [
+		"./src"
+	]
 }

@@ -4,11 +4,20 @@
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"license": "MIT",
+	"prettier": "@leonzalion/prettier-config",
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
 	"scripts": {
-		"prepublish": "pnpm build",
-		"build": "rimraf dist && tsc --outDir dist/",
+		"start": "node --loader ts-node/esm ./src/index.ts",
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest",
+		"build": "rimraf dist && tsc && tsc-alias -p tsconfig.json",
+		"prepublish": "pnpm test && pnpm build",
 		"lint": "eslint --fix src",
-		"prettier": "prettier --write src"
+		"prettier": "prettier --write src",
+		"tc": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^13.1.0",
