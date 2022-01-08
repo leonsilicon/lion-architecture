@@ -59,4 +59,5 @@ export function createMyProject() {
 
 ## Projects using Lion Architecture
 [lionecs](https://github.com/leonzalion/lionecs): The most strongly typed ECS library in TypeScript.
+
 [LionREST](https://github.com/leonzalion/lionrest): A type-safe REST API schema manager based off TypeScript with no code generation.
