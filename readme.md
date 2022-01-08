@@ -50,7 +50,6 @@ import type { MyProjectProperties } from '../types/properties';
 const myProjectProperties = retrieveModuleProperties(
   myProjectModules
 ) as InternalMyProjectProperties<any>;
-) as InternalLionecsProperties<any>;
 
 export function createMyProject() {
   const myProject = createInstance(myProjectProperties, {}) as MyProject;
