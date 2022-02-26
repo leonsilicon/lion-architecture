@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		"src",
+		"scripts",
+		".eslintrc.cjs",
+		".markdownlint.cjs"
+	]
+}
