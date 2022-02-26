@@ -57,7 +57,12 @@ export function createMyProject() {
 }
 ```
 
-## Projects using Lion Architecture
+## Exports
+
+In order to improve import/export ergonomics, the Lion Architecture makes heavy use of dependency cycles and `index.ts` files that re-export all files in a folder. This is generally only recommended in places where tree-shaking isn't valuable, like on a server backend.
+
+To reduce problems from dependency cycles, the Lion Architecture forbids exporting variables, and only allows exporting functions. When a constant value is needed, the constant is wrapped in a function using [onetime](https://npm.im/onetime).
+
+## Example Projects using Lion Architecture
 [lionecs](https://github.com/leonzalion/lionecs): The most strongly typed ECS library in TypeScript.
 
-[LionREST](https://github.com/leonzalion/lionrest): A type-safe REST API schema manager based off TypeScript with no code generation.

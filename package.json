@@ -5,6 +5,11 @@
 	"types": "dist/index.d.ts",
 	"license": "MIT",
 	"prettier": "@leonzalion/prettier-config",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/leonzalion/lion-architecture.git"
+	},
+	"homepage": "https://github.com/leonzalion/lion-architecture#readme",
 	"commitlint": {
 		"extends": [
 			"@commitlint/config-conventional"
