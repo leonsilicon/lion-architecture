@@ -3,13 +3,10 @@
 	"compilerOptions": {
 		"outDir": "dist",
 		"baseUrl": ".",
+		"esModuleInterop": true,
 		"paths": {
-			"~/*": [
-				"./src/*"
-			],
+			"~/*": ["./src/*"]
 		}
 	},
-	"include": [
-		"./src"
-	]
+	"include": ["./src"]
 }

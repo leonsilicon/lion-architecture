@@ -9,9 +9,11 @@ export function retrieveModuleProperties(
 	const moduleProperties = {} as Record<string, Function>;
 	for (const module of Object.values(modulesObj)) {
 		for (const [fn, value] of Object.entries(module())) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			moduleProperties[fn] = value as any;
 		}
 	}
+
 	return moduleProperties;
 }
 
