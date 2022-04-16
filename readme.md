@@ -1,5 +1,7 @@
 # Lion Architecture
 
+[![npm version](https://img.shields.io/npm/v/lion-architecture)](https://npmjs.com/package/lion-architecture)
+
 The "Lion Architecture" (LA) is a programming pattern for TypeScript projects. It emphasizes modularity, DRY code, and long-term flexibility. It does not prioritize performance and is willing to sacrifice on performance for greater ease-of-development. Many of the performance issues with this architecture can theoretically be fixed using a build-step that will compile TypeScript in Lion Architecture to more performantly-written TypeScript/JavaScript.
 
 ## Object Factories over ES6 `class`es
