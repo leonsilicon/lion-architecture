@@ -82,7 +82,7 @@ export const DEFAULT_THEME = {
 };
 ```
 
-Because the `chalk.blue` is already evaluated, overidding environment variables like `FORCE_COLOR` for chalk (e.g. in tests) doesn't work.
+Because `chalk.blue` is already evaluated, overidding environment variables like `FORCE_COLOR` for chalk (e.g. in tests) doesn't work.
 
 Instead, this problem can be mitigated using top-level function exports:
 
@@ -90,7 +90,7 @@ Instead, this problem can be mitigated using top-level function exports:
 import chalk from 'chalk';
 import onetime from 'onetime';
 
-export const getDefaultTheme(() => ({
+export const getDefaultTheme = onetime(() => ({
   keyword: chalk.blue,
   built_in: chalk.cyan,
   // ...
