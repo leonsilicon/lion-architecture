@@ -68,3 +68,32 @@ To reduce problems from dependency cycles, the Lion Architecture forbids exporti
 ## Example Projects using Lion Architecture
 [lionecs](https://github.com/leonzalion/lionecs): The most strongly typed ECS library in TypeScript.
 
+## No top-level constant exports
+
+Real world example:
+
+```typescript
+import chalk from 'chalk';
+
+export const DEFAULT_THEME = {
+  keyword: chalk.blue,
+  built_in: chalk.cyan,
+  // ...
+};
+```
+
+Because the `chalk.blue` is already evaluated, overidding environment variables like `FORCE_COLOR` for chalk (e.g. in tests) doesn't work.
+
+Instead, this problem can be mitigated using top-level function exports:
+
+```typescript
+import chalk from 'chalk';
+import onetime from 'onetime';
+
+export const getDefaultTheme(() => ({
+  keyword: chalk.blue,
+  built_in: chalk.cyan,
+  // ...
+}));
+```
+
