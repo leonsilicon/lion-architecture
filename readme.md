@@ -97,3 +97,15 @@ export const getDefaultTheme = onetime(() => ({
 }));
 ```
 
+## Preinstall Scripts
+
+In monorepos, preinstall scripts are used to run the build scripts of all packages in order for `"packageName": "link:../package/dist"` to work correctly on install. However, the `dist` folder needs to exist for `pnpm` to successfully symlink the project. Thus, the `dist` folder for each project needs to exist at all times, including on a fresh clone from `git`. This is done by adding a `.gitignore` file to each package with the following contents:
+
+```gitignore
+!dist
+dist/*
+!dist/license
+```
+
+This will make sure that the dist folder always contains a license, which is something that will never affect the actual runtime of the code and is something that very rarely changes, leading to cleaner git diffs.
+
