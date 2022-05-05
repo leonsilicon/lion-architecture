@@ -17,7 +17,7 @@
 		"prepare": "lion-git-hooks",
 		"lint": "eslint --fix src",
 		"prettier": "prettier --write src",
-		"tc": "tsc --noEmit"
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@leonzalion/configs": "^1.4.4",
