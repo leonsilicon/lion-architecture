@@ -70,31 +70,20 @@ To reduce problems from dependency cycles, the Lion Architecture forbids exporti
 
 ## No top-level constant exports
 
-Real world example:
+This is to allow for lazy loading of variables whenever possible, as some variables may depend on things like environment variables to be present (e.g. an SDK), but the function may not be called under certain conditions. If the function was exported at the top-level, the variable would always check for the environment variable and error even when the variable wouldn't be used.
+
+Instead of:
 
 ```typescript
-import chalk from 'chalk';
-
-export const DEFAULT_THEME = {
-  keyword: chalk.blue,
-  built_in: chalk.cyan,
-  // ...
-};
+export const octokit = new Octokit({ auth: process.env.GITHUB_BOT_TOKEN })
 ```
 
-Because `chalk.blue` is already evaluated, overidding environment variables like `FORCE_COLOR` for chalk (e.g. in tests) doesn't work.
-
-Instead, this problem can be mitigated using top-level function exports:
+Write:
 
 ```typescript
-import chalk from 'chalk';
 import onetime from 'onetime';
 
-export const getDefaultTheme = onetime(() => ({
-  keyword: chalk.blue,
-  built_in: chalk.cyan,
-  // ...
-}));
+export const octokit = onetime(() => new Octokit({ auth: process.env.GITHUB_BOT_TOKEN });
 ```
 
 ## Preinstall Scripts
