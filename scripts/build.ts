@@ -1,4 +1,4 @@
-import { chProjectDir, rmDist, copyPackageFiles } from 'lion-system'
+import { chProjectDir, rmDist, copyPackageFiles } from 'lionconfig'
 import { execaCommandSync as exec } from 'execa'
 
 chProjectDir(import.meta.url);
